@@ -1,2 +1,2 @@
-# flask-api-authentication
-Example project using Api authentication with Flask
+# Flask Api Authentication
+Example Project using Api authentication with Flask - Python
