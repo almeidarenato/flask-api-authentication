@@ -10,3 +10,8 @@ Use the following command on the terminal
 ```bash
 pip3 install -r requirements.txt
 ```
+
+# Libs
+- Flask
+- Flask SQL Alchemy
+- Flask Login
