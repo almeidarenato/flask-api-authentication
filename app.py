@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_login import LoginManager, login_user, current_user
+from flask_login import LoginManager, login_user, current_user , logout_user , login_required
 from database import db
 from models.user import User
 
@@ -38,6 +38,12 @@ def login():
 
     return jsonify({"message":"Credenciais inválidas"}), 400
 
+
+@app.route("/logout", methods=["GET"])
+@login_required # protege rota apenas para usuários logados acessarem
+def logout():
+    logout_user() # desautentica o usuário
+    return jsonify({"message":"Logout realizado com sucesso"}), 200
 
 @app.route("/hello-world")
 def hello_world():
