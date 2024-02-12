@@ -45,6 +45,24 @@ def logout():
     logout_user() # desautentica o usuário
     return jsonify({"message":"Logout realizado com sucesso"}), 200
 
+@app.route("/user",methods=["POST"])
+@login_required
+def create_user():
+    data = request.json
+    username = data.get("username")
+    password = data.get("password")
+    if username and password:
+        #Busca se o usuário existe no banco (o primeiro)
+        user = User.query.filter_by(username=username).first()
+        if user:
+            return jsonify({"message": "Usuario já cadastrado"}), 409
+        user = User(username=username,password=password)
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({"message": "Usuario cadastrado com sucesso"}), 200
+    return jsonify({"message":"Dados invalidos"}), 401
+
+
 @app.route("/hello-world")
 def hello_world():
     return "Hello World"
