@@ -11,7 +11,7 @@ https://python.org/
 
 Use the following command on the terminal
 
-```bash
+```sh
 pip3 install -r requirements.txt
 ```
 
@@ -43,4 +43,18 @@ user.username
 db.session.add(user)
 db.session.commit()
 
+```
+
+# Run Docker for MySql
+
+Requires docker desktop installed.\
+On bash run:
+
+```sh
+docker-compose up
+```
+if its already running: 
+
+```sh
+docker-compose up --force-recreate
 ```
