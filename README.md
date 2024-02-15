@@ -35,6 +35,10 @@ flask shell
 db.create_all() #create tables
 db.session.commit() # commits changes
 
+# Drop all databases
+db.drop_all()
+db.session.commit() # commits changes
+
 # Create an instance of the object user with username and password values
 user = User(username="admin", password="123")
 
