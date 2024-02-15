@@ -52,6 +52,8 @@ On bash run:
 
 ```sh
 docker-compose up
+# or 
+docker-compose up -d #does not lock the terminal
 ```
 if its already running: 
 
