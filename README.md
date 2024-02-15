@@ -7,6 +7,9 @@ Example Project using Api authentication with Flask - Python
 Python is required to run this project.
 https://python.org/
 
+Docker-Desktop is required to run docker-composer.yml
+
+
 # Installation
 
 Use the following command on the terminal
