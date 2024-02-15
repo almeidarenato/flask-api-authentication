@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_login import LoginManager, login_user, current_user , logout_user , login_required
+from bcrypt import hashpw, checkpw, gensalt
 from database import db
 from models.user import User
 
@@ -31,7 +32,7 @@ def login():
         #Busca se o usuário existe no banco (o primeiro)
         user = User.query.filter_by(username=username).first()
 
-        if user and user.password == password:
+        if user and checkpw(str.encode(password), str.encode(user.password)):
             login_user(user)
             print(current_user.is_authenticated)
             return jsonify({"message":"Autenticação realizada com sucesso"}), 200
@@ -56,7 +57,8 @@ def create_user():
         user = User.query.filter_by(username=username).first()
         if user:
             return jsonify({"message": "Usuario já cadastrado"}), 409
-        user = User(username=username,password=password, role='user')
+        hashed_password = hashpw(str.encode(password), gensalt())
+        user = User(username=username,password=hashed_password, role='user')
         db.session.add(user)
         db.session.commit()
         return jsonify({"message": "Usuario cadastrado com sucesso"}), 200
