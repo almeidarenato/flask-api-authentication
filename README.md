@@ -31,6 +31,10 @@ Commands
 # Enters the flask shell on the terminal
 flask shell
 
+# Creates database
+db.create_all() #create tables
+db.session.commit() # commits changes
+
 # Create an instance of the object user with username and password values
 user = User(username="admin", password="123")
 
